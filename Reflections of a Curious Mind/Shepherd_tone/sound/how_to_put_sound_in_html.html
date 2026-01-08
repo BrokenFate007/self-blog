@@ -1,0 +1,159 @@
+<style>
+  .audio-card {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 20px 24px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    color: #e8f1f2;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .audio-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .audio-subtitle {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    margin-bottom: 12px;
+  }
+  .timer {
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  .play-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    background: #e8f1f2;
+    color: #203a43;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .play-btn:hover {
+    background: #d0e1e3;
+    transform: translateY(-1px);
+  }
+  .play-btn:active {
+    transform: translateY(0);
+  }
+  .status-text {
+    text-align: center;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    opacity: 0.6;
+  }
+</style>
+
+<div class="audio-card">
+  <div class="audio-title">Shepherd Tone — Continuous</div>
+  <div class="audio-subtitle">True seamless perceptual loop</div>
+  <div class="timer" id="shepherdTimer">00:00</div>
+  <button class="play-btn" id="shepherdPlayBtn">&#9654; Play</button>
+  <div class="status-text" id="shepherdStatus">Ready</div>
+</div>
+
+<script>
+//<![CDATA[
+(function() {
+  var audioCtx = null;
+  var buffer = null;
+  var source = null;
+  var playing = false;
+  var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/67bb6b34364da530e045d893e9d7f4a228470a20/Reflections%20of%20a%20Curious%20Mind/Shepherd_tone/sound/Sine_500Hz_50Loud.wav";
+  var startTime = 0;
+  var timerInterval = null;
+  
+  var timerEl = document.getElementById("shepherdTimer");
+  var playBtn = document.getElementById("shepherdPlayBtn");
+  var statusEl = document.getElementById("shepherdStatus");
+  
+  function formatTime(ms) {
+    var s = Math.floor(ms / 1000);
+    var m = Math.floor(s / 60);
+    return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+  }
+  
+  function loadAudio() {
+    return new Promise(function(resolve, reject) {
+      statusEl.textContent = "Loading audio...";
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      
+      fetch(url)
+        .then(function(response) {
+          if (!response.ok) throw new Error("Failed to load audio");
+          return response.arrayBuffer();
+        })
+        .then(function(arrayBuffer) {
+          return audioCtx.decodeAudioData(arrayBuffer);
+        })
+        .then(function(decodedBuffer) {
+          buffer = decodedBuffer;
+          statusEl.textContent = "Ready";
+          resolve();
+        })
+        .catch(function(error) {
+          statusEl.textContent = "Error: " + error.message;
+          console.error("Audio load error:", error);
+          reject(error);
+        });
+    });
+  }
+  
+  playBtn.addEventListener("click", function() {
+    if (!audioCtx) {
+      loadAudio().then(function() {
+        startPlayback();
+      });
+    } else if (!buffer) {
+      return;
+    } else {
+      togglePlayback();
+    }
+  });
+  
+  function startPlayback() {
+    if (!buffer) return;
+    togglePlayback();
+  }
+  
+  function togglePlayback() {
+    if (!playing) {
+      source = audioCtx.createBufferSource();
+      source.buffer = buffer;
+      source.loop = true;
+      
+      var gain = audioCtx.createGain();
+      gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+      source.connect(gain);
+      gain.connect(audioCtx.destination);
+      source.start(0);
+      
+      startTime = performance.now();
+      timerInterval = setInterval(function() {
+        timerEl.textContent = formatTime(performance.now() - startTime);
+      }, 250);
+      
+      playing = true;
+      playBtn.innerHTML = "&#9208; Stop";
+      statusEl.textContent = "Playing...";
+    } else {
+      if (source) source.stop();
+      if (timerInterval) clearInterval(timerInterval);
+      timerEl.textContent = "00:00";
+      playing = false;
+      playBtn.innerHTML = "&#9654; Play";
+      statusEl.textContent = "Stopped";
+    }
+  }
+})();
+//]]>
+</script>
