@@ -1,136 +1,179 @@
-<p>
-Most of us carry bags on our shoulders and notice their weight within minutes.
-A little extra and the strap digs in. Muscles complain.
-The body sends a clear message.
-Something is pressing down.
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Weight Above Our Heads</title>
+  
+  <style>
+    /* ===== GLOBAL STYLING ===== */
+    body {
+      background-color: #2e2e2e;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* ===== CITATION STYLING ===== */
+    .citation {
+      position: relative;
+      display: inline-block;
+      color: #2c5364;
+      font-weight: 600;
+      cursor: help;
+      text-decoration: none;
+      vertical-align: super;
+      font-size: 0.85em;
+    }
+    
+    .citation .citation-text {
+      visibility: hidden;
+      opacity: 0;
+      width: 320px;
+      background-color: #2c5364;
+      color: #e8f1f2;
+      text-align: left;
+      border-radius: 8px;
+      padding: 12px 14px;
+      position: absolute;
+      z-index: 1000;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -160px;
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.5;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: opacity 0.3s, visibility 0.3s;
+      vertical-align: baseline;
+    }
+    
+    .citation .citation-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #2c5364 transparent transparent transparent;
+    }
+    
+    .citation:hover .citation-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .citation.active .citation-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .citation-link {
+      color: #9fc5d8;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    
+    .citation-link:hover {
+      color: #b7d7e8;
+    }
+    
+    /* ===== BLOG NUMBER TAG ===== */
+    .blog-number {
+      text-align: left;
+      color: #999999;
+      font-size: 1.0rem;
+      margin-bottom: 8px;
+    }
+    
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 600px) {
+      .citation .citation-text {
+        width: 280px;
+        margin-left: -140px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
 
-<p>
-Now pause for a moment and look up.
-Nothing dramatic.
-Just sky.
-Blue on a good day, grey on others.
-It feels empty.
-Light.
-Almost absent.
-</p>
+<body>
 
-<p>
-But it is not.
-</p>
+<!-- ============================================================
+     MAIN BLOG CONTENT SECTION
+     ============================================================ -->
 
-<p>
-Above your head, right now, is the entire atmosphere.
-Not a thin veil.
-Not a decorative layer.
-A column of air stretching from where you stand all the way toward space.
-The atmosphere does not end abruptly, but for practical purposes its effective boundary
-is often taken as the Kármán line, about <strong>100 km above sea level</strong>.
-Everything below that height contributes to the pressure you live under.
-</p>
+<p class="blog-number"><small>[Blog #5.2]</small></p>
 
-<p>
-This is where the mind hesitates.
-If that much air is really there,
-how much does it weigh,
-and why do we not collapse under it?
-</p>
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
 
-<p>
-At sea level, atmospheric pressure is defined as
-<strong>1 atm = 101325 Pa</strong>.
-Pressure means force per unit area, so the force exerted by the air is given by
-</p>
+  <!-- ========================================
+       CONTENT - EXACT TEXT PRESERVED
+       ======================================== -->
 
-<p style="text-align: center;">
-<strong>F = P × A</strong>
-</p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">Most of us carry bags on our shoulders and notice their weight within minutes. A little extra and the strap digs in. Muscles complain. The body sends a clear message. Something is pressing down.</span></p>
 
-<p>
-Start small.
-One square centimeter is
-<strong>1 cm² = 10<sup>−4</sup> m²</strong>.
-On that tiny patch of skin, the atmosphere exerts a force of
-</p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">Now pause for a moment and look up. Nothing dramatic. Just sky. Blue on a good day, grey on others. It feels empty. Light. Almost absent.</span></p>
 
-<p style="text-align: center;">
-<strong>F = 101325 × 10<sup>−4</sup> ≈ 10.13 N</strong></p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">But it is not.</span></p>
 
-<p>
-Now scale this up to the human body.
-The projected area of an average adult, seen from above,
-is about <strong>0.5 m²</strong>.
-The downward force due to atmospheric pressure then becomes
-</p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">Above your head, right now, is the entire atmosphere. Not a thin veil. Not a decorative layer. A column of air stretching from where you stand all the way toward space. The atmosphere does not end abruptly, but for practical purposes its effective boundary is often taken as the Kármán line, about <strong>100 km above sea level</strong>. Everything below that height contributes to the pressure you live under.</span></p>
 
-<p style="text-align: center;">
-<strong>F = 101325 × 0.5 ≈ 5 × 10<sup>4</sup> N</strong>
-</p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">This is where the mind hesitates. If that much air is really there, how much does it weigh, and why do we not collapse under it?</span></p>
 
-<p>
-This corresponds to the weight of several tons.
-</p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">At sea level, atmospheric pressure is defined as <strong>1 atm = 101325 Pa</strong>. Pressure means force per unit area, so the force exerted by the air is given by</span></p>
 
-<p>
-Mechanically, this is an enormous load.
-Yet we never feel it.
-</p>
+  <p style="text-align: center;"><span style="font-family: verdana; color: #e8f1f2;"><strong>F = P × A</strong></span></p>
 
-<p>
-The reason is not dramatic.
-It is simple,
-and that is what gives it a quiet kind of beauty.
-</p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">Start small. One square centimeter is <strong>1 cm² = 10<sup>−4</sup> m²</strong>. On that tiny patch of skin, the atmosphere exerts a force of</span></p>
 
-<p>
-We negate it by being part of it.
-</p>
+  <p style="text-align: center;"><span style="font-family: verdana; color: #e8f1f2;"><strong>F = 101325 × 10<sup>−4</sup> ≈ 10.13 N</strong></span></p>
 
-<p>
-The air outside pushes inward,
-but the fluids and gases inside the body push outward with equal insistence.
-Blood pressure balances external pressure.
-Air inside the lungs pushes back.
-Even the microscopic spaces inside cells participate.
-No struggle.
-No resistance.
-Just equilibrium,
-maintained every second you are alive.
-</p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">Now scale this up to the human body. The projected area of an average adult, seen from above, is about <strong>0.5 m²</strong>. The downward force due to atmospheric pressure then becomes</span></p>
 
-<p>
-You only notice the atmosphere when this balance is disturbed.
-Climb a mountain too quickly and the reduced pressure announces itself as a headache.
-Fly high without pressurization and the body protests violently.
-Remove the air entirely, and life ends almost instantly.
-The weight you never felt turns out to be essential.
-</p>
+  <p style="text-align: center;"><span style="font-family: verdana; color: #e8f1f2;"><strong>F = 101325 × 0.5 ≈ 5 × 10<sup>4</sup> N</strong></span></p>
 
-<p>
-There is something humbling in this.
-We spend much of life thinking about burdens we consciously carry.
-Responsibilities.
-Expectations.
-Visible loads.
-Yet the heaviest force acting on us is so constant,
-so evenly distributed,
-that it vanishes from awareness.
-</p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">This corresponds to the weight of several tons.</span></p>
 
-<p>
-The atmosphere is not light.
-<br />
-<strong>We are simply adapted.</strong>
-</p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">Mechanically, this is an enormous load. Yet we never feel it.</span></p>
 
-<p>
-Perhaps that is the quiet lesson.
-Some pressures disappear not because they are small,
-but because we have learned to live in balance with them.
-And sometimes,
-the most powerful forces shaping our existence
-are the ones we stop noticing
-long before we stop depending on them.
-</p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">The reason is not dramatic. It is simple, and that is what gives it a quiet kind of beauty.</span></p>
 
-<p><i> Have fun.</i></p>
+  <p><span style="font-family: verdana; color: #e8f1f2;">We negate it by being part of it.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">The air outside pushes inward, but the fluids and gases inside the body push outward with equal insistence. Blood pressure balances external pressure. Air inside the lungs pushes back. Even the microscopic spaces inside cells participate. No struggle. No resistance. Just equilibrium, maintained every second you are alive.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">You only notice the atmosphere when this balance is disturbed. Climb a mountain too quickly and the reduced pressure announces itself as a headache. Fly high without pressurization and the body protests violently. Remove the air entirely, and life ends almost instantly. The weight you never felt turns out to be essential.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">There is something humbling in this. We spend much of life thinking about burdens we consciously carry. Responsibilities. Expectations. Visible loads. Yet the heaviest force acting on us is so constant, so evenly distributed, that it vanishes from awareness.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">The atmosphere is not light.<br><strong>We are simply adapted.</strong></span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">Perhaps that is the quiet lesson. Some pressures disappear not because they are small, but because we have learned to live in balance with them. And sometimes, the most powerful forces shaping our existence are the ones we stop noticing long before we stop depending on them.</span></p>
+
+  <p><em><span style="font-family: verdana; color: #e8f1f2;">Have fun.</span></em></p>
+
+</section>
+
+<!-- ========================================
+     JAVASCRIPT FOR MOBILE CITATION TOOLTIPS
+     ======================================== -->
+<script>
+  document.querySelectorAll('.citation').forEach(citation => {
+    citation.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.classList.toggle('active');
+    });
+  });
+  
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.citation')) {
+      document.querySelectorAll('.citation.active').forEach(citation => {
+        citation.classList.remove('active');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

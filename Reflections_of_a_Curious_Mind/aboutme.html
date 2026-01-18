@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me</title>
+  
+  <style>
+    /* ===== GLOBAL STYLING ===== */
+    body {
+      background-color: #2e2e2e;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* ===== CITATION STYLING ===== */
+    .citation {
+      position: relative;
+      display: inline-block;
+      color: #2c5364;
+      font-weight: 600;
+      cursor: help;
+      text-decoration: none;
+      vertical-align: super;
+      font-size: 0.85em;
+    }
+    
+    .citation .citation-text {
+      visibility: hidden;
+      opacity: 0;
+      width: 320px;
+      background-color: #2c5364;
+      color: #e8f1f2;
+      text-align: left;
+      border-radius: 8px;
+      padding: 12px 14px;
+      position: absolute;
+      z-index: 1000;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -160px;
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.5;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: opacity 0.3s, visibility 0.3s;
+      vertical-align: baseline;
+    }
+    
+    .citation .citation-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #2c5364 transparent transparent transparent;
+    }
+    
+    .citation:hover .citation-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .citation.active .citation-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .citation-link {
+      color: #9fc5d8;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    
+    .citation-link:hover {
+      color: #b7d7e8;
+    }
+    
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 600px) {
+      .citation .citation-text {
+        width: 280px;
+        margin-left: -140px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <h1 style="color: #7fb3d5; font-family: verdana; font-size: 2.2rem; margin-bottom: 24px; text-align: center;">About Me</h1>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">My name is <strong>Krishna</strong>, and I have always been fascinated by the strange ways the world works. I am drawn not only to the truths that hide and reveal themselves but also to the <strong>causes behind things</strong> and the <strong>effects that follow</strong>.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;"><strong>Truth interests me.</strong><br><strong>Science inspires me.</strong><br><strong>Human behavior surprises me.</strong><br>And the <strong>chain of cause and effect</strong> makes me stop and think every single time.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">I am an engineer by training, but a questioner by nature. I am not a philosopher, historian, or scientist in the formal sense. I am simply a human trying to understand the <strong>small bubble of knowledge</strong> we all live inside.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">My curiosity often moves in many directions.<br>I wonder <strong>why things happen</strong> the way they do.<br>I question <strong>what sets a cause in motion</strong>.<br>I think about <strong>how one small idea can lead to something unexpected</strong>.<br>And I reflect on why humans, despite calling ourselves <strong>Homo sapiens</strong>, understand so little of our own nature.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">I revisit questions I accepted as a child with the tools I have learned as an adult. Sometimes a simple fact from a textbook, when examined again, reveals layers I never imagined. Why does sand heat faster than water? What makes atmospheric pressure invisible yet essential? How does sound create illusions that deceive even careful listeners?</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">Science fascinates me, especially when discoveries happen <strong>accidentally</strong> yet change the world forever.<br>History interests me, especially when <strong>truth arrives uninvited</strong> and forces us to rewrite what we believed.<br>Human nature makes me think, especially when we act with confidence despite knowing so little.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">This blog is my space to explore <strong>the truths we search for</strong>, <strong>the truths that find us</strong>, <strong>the thoughts that stay with me</strong>, <strong>the causes behind events</strong>, <strong>the effects they create</strong>, and <strong>the questions that refuse to stay silent</strong>.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">I write not to teach, but to understand. Not to answer, but to ask better questions. And perhaps, through this process, to remind both myself and anyone reading that the most ordinary phenomena often hide the most extraordinary explanations.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">If you are someone who <strong>questions</strong>, <strong>wonders</strong>, <strong>reflects</strong>, or simply <strong>pauses to think</strong>, then welcome.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">Maybe something here will <strong>speak to you</strong>.<br>Or maybe, beware, something here will <strong>start searching for you</strong>.</span></p>
+
+  <p><em><span style="font-family: verdana; color: #e8f1f2;">Have fun.</span></em></p>
+
+</section>
+
+<script>
+  document.querySelectorAll('.citation').forEach(citation => {
+    citation.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.classList.toggle('active');
+    });
+  });
+  
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.citation')) {
+      document.querySelectorAll('.citation.active').forEach(citation => {
+        citation.classList.remove('active');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
