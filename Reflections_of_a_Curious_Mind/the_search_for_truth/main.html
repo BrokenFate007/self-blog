@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    /* ===== GLOBAL STYLING ===== */
+    body {
+      background-color: #2e2e2e;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* ===== CITATION STYLING ===== */
+    .citation {
+      position: relative;
+      display: inline-block;
+      color: #2c5364;
+      font-weight: 600;
+      cursor: help;
+      text-decoration: none;
+      vertical-align: super;
+      font-size: 0.85em;
+    }
+    
+    .citation .citation-text {
+      visibility: hidden;
+      opacity: 0;
+      width: 320px;
+      background-color: #2c5364;
+      color: #e8f1f2;
+      text-align: left;
+      border-radius: 8px;
+      padding: 12px 14px;
+      position: absolute;
+      z-index: 1000;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -160px;
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.5;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: opacity 0.3s, visibility 0.3s;
+      vertical-align: baseline;
+    }
+    
+    .citation .citation-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #2c5364 transparent transparent transparent;
+    }
+    
+    .citation:hover .citation-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .citation.active .citation-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .citation-link {
+      color: #9fc5d8;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    
+    .citation-link:hover {
+      color: #b7d7e8;
+    }
+    
+    /* ===== BLOG NUMBER TAG ===== */
+    .blog-number {
+      text-align: left;
+      color: #999999;
+      font-size: 1.0rem;
+      margin-bottom: 8px;
+    }
+    
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 600px) {
+      .citation .citation-text {
+        width: 280px;
+        margin-left: -140px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     MAIN BLOG CONTENT SECTION
+     ============================================================ -->
+
+<p class="blog-number"><small>[Blog#1.2]</small></p>
+
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <!-- ========================================
+       CONTENT - EXACT TEXT PRESERVED
+       ======================================== -->
+
+  <p><span style="font-family: verdana; color: #e8f1f2;"><strong>"जब सत्य की परीक्षा लेने चले हो, सत्य भी तुम्हारी परीक्षा लेगा।"</strong></span></p>
+
+  <p><em><span style="font-family: verdana; color: #e8f1f2;">"When you go to test the truth, the truth will test you as well."</span></em></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">We often believe that we are the ones searching for the truth. But in reality, truth has a strange way of finding us. Every human being is in pursuit of truth, but more often than not, it is <strong>their own version</strong> of truth that they chase.</span></p>
+<!--more-->
+  <p><span style="font-family: verdana; color: #e8f1f2;">A scientist begins with a hypothesis, a personal belief about how the world works. But experiments may confirm the idea or completely destroy it. Doesn't this mean that scientists search for one truth, only to be struck by a completely different one?</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">Sometimes the truth we discover is far better than what we expected. Other times, it is horrifying.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">Take Oppenheimer and the scientists of his era. They were seeking the truth about quantum physics, nuclear fission, and the fundamental laws of nature. But the truth they uncovered became one of the darkest chapters in human history. The people of Hiroshima and Nagasaki experienced that dreadful truth firsthand in 1945.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">Yet not all truths are terrible. Some transform the world for the better.</span></p>
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">Consider Alexander Fleming. He was researching bacteria, but instead, the truth of <strong>penicillin</strong> found him, a discovery far greater than the one he set out to make. History is filled with countless such examples where unexpected truths changed the world.</span></p>
+
+  <p><strong><span style="font-family: verdana; color: #e8f1f2;">In the end, truth is not always what we search for, but it is always what finds us.</span></strong></p>
+
+</section>
+
+<!-- ========================================
+     JAVASCRIPT FOR MOBILE CITATION TOOLTIPS
+     ======================================== -->
+<script>
+  document.querySelectorAll('.citation').forEach(citation => {
+    citation.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.classList.toggle('active');
+    });
+  });
+  
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.citation')) {
+      document.querySelectorAll('.citation.active').forEach(citation => {
+        citation.classList.remove('active');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    /* ===== GLOBAL STYLING ===== */
+    body {
+      background-color: #2e2e2e;  /* Changed to grayish background */
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* ===== CITATION STYLING ===== */
+    .citation {
+      position: relative;
+      display: inline-block;
+      color: #2c5364;
+      font-weight: 600;
+      cursor: help;
+      text-decoration: none;
+      vertical-align: super;
+      font-size: 0.85em;
+    }
+    
+    .citation .citation-text {
+      visibility: hidden;
+      opacity: 0;
+      width: 320px;
+      background-color: #2c5364;
+      color: #e8f1f2;
+      text-align: left;
+      border-radius: 8px;
+      padding: 12px 14px;
+      position: absolute;
+      z-index: 1000;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -160px;
+      font-size: 0.85rem;
+      font-weight: normal;
+      line-height: 1.5;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: opacity 0.3s, visibility 0.3s;
+      vertical-align: baseline;
+    }
+    
+    .citation .citation-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #2c5364 transparent transparent transparent;
+    }
+    
+    .citation:hover .citation-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .citation.active .citation-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .citation-link {
+      color: #9fc5d8;
+      text-decoration: none;  /* Removed underline */
+      word-break: break-all;
+    }
+    
+    .citation-link:hover {
+      color: #b7d7e8;
+    }
+    
+    /* ===== BLOG NUMBER TAG ===== */
+    .blog-number {
+      text-align: left;
+      color: #999999;
+      font-size: 1.0rem;
+      margin-bottom: 8px;
+    }
+    
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 600px) {
+      .citation .citation-text {
+        width: 280px;
+        margin-left: -140px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     MAIN BLOG CONTENT SECTION
+     ============================================================ -->
+  <p class="blog-number"><small>[Blog #3.4]</small></p>
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <!-- ========================================
+       BLOG NUMBER AND TITLE
+       ======================================== -->
+  
+
+
+  <!-- ========================================
+       INTRODUCTION
+       ======================================== -->
+
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    When I was a child, my science textbook stated a simple fact:
+  </span></p>
+  
+  <p><em><span style="font-family: verdana; color: #e8f1f2;">
+    "Sand heats up faster than water and cools down faster too."
+  </span></em></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    I accepted it without a second thought. 
+    Now that I have become an engineer, I did bother to ask the most basic question: <strong>why</strong>.
+  </span></p>
+<!--more-->
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    With more resources available and a clearer way of thinking than I had as a child, I went back to understand that simple statement. 
+    What I found was not a single factor but a group of them, all working together in a quiet and predictable way.
+  </span></p>
+
+  <!-- ========================================
+       SPECIFIC HEAT CAPACITY
+       ======================================== -->
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 32px;">
+    <span style="font-family: verdana;">Specific Heat Capacity</span>
+  </h2>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    The first idea I checked was 
+    <a href="https://en.wikipedia.org/wiki/Specific_heat_capacity" target="_blank" rel="noopener" style="color: #7fb3d5; text-decoration: none;">specific heat capacity</a>, 
+    which tells us how much energy is needed to raise the temperature of a substance by one degree.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Sand: about <strong>800 J per kilogram per degree Celsius</strong><br>
+    Water: about <strong>4200 J per kilogram per degree Celsius</strong>
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Water needs more than five times the energy to warm up. 
+    This single property already explained a large part of the difference. 
+    Sand, with its smaller requirement, responds much more quickly both while heating and cooling.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    I wanted to dig for more because real-world behavior usually has more than one cause hiding under it, so I kept going.
+  </span></p>
+
+  <!-- ========================================
+       WHY WATER NEEDS MORE ENERGY
+       ======================================== -->
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 32px;">
+    <span style="font-family: verdana;">Why Water Needs More Energy</span>
+  </h2>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Water's unusually high requirement comes from its structure.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Its molecules form 
+    <strong><a href="https://en.wikipedia.org/wiki/Hydrogen_bond" target="_blank" rel="noopener" style="color: #7fb3d5; text-decoration: none;">hydrogen bonds</a></strong>, 
+    tiny attractions that hold them together. 
+    Heating water means not only speeding up the molecules but also loosening those bonds. 
+    That extra effort shows up directly in its specific heat value.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Sand has none of this. Its grains simply sit next to each other. 
+    Heating them takes far less internal work.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    This gave me one clear piece of the picture, but the behavior of sand and water still felt richer than this single explanation.
+  </span></p>
+
+  <!-- ========================================
+       HEAT TRAVELS WITHIN THEM
+       ======================================== -->
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 32px;">
+    <span style="font-family: verdana;">How Heat Travels Within Them</span>
+  </h2>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Next, I looked at 
+    <a href="https://en.wikipedia.org/wiki/Thermal_conductivity_and_resistivity" target="_blank" rel="noopener" style="color: #7fb3d5; text-decoration: none;">how heat moves</a> 
+    once it enters the material. 
+    Water conducts heat around <strong>0.6 W per meter per kelvin</strong>, while dry sand usually falls between <strong>0.15 and 0.25</strong>.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Water distributes heat more effectively. 
+    When one part warms, it shares the energy with the surrounding water, slowing the rise of temperature.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Sand, on the other hand, holds heat near its surface because it cannot carry it downward efficiently. 
+    The top layer, therefore, gets hot quickly.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    This matched many everyday observations, so the pieces were beginning to connect.
+  </span></p>
+
+  <!-- ========================================
+       SUNLIGHT PENETRATION
+       ======================================== -->
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 32px;">
+    <span style="font-family: verdana;">How Sunlight Enters Each Material</span>
+  </h2>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Then I considered sunlight itself. 
+    Water allows light to penetrate several meters depending on the 
+    <a href="https://en.wikipedia.org/wiki/Turbidity" target="_blank" rel="noopener" style="color: #7fb3d5; text-decoration: none;">turbidity</a> 
+    of the water, spreading the absorbed energy through a larger volume.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Sand, on the other hand, absorbs the sunlight within a very shallow layer. 
+    Only a small amount of the material receives all the incoming energy, which naturally leads to a faster surface temperature rise.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    So, nothing surprising was there, just another reason lining up with the others.
+  </span></p>
+
+  <!-- ========================================
+       EVAPORATION
+       ======================================== -->
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 32px;">
+    <span style="font-family: verdana;">Evaporation</span>
+  </h2>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Water also cools through 
+    <a href="https://en.wikipedia.org/wiki/Evaporation" target="_blank" rel="noopener" style="color: #7fb3d5; text-decoration: none;">evaporation</a>. 
+    Even at moderate temperatures, some molecules escape into the air, carrying energy with them. 
+    This loss lowers the temperature of the remaining water.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    Sand does not evaporate, so there is no similar cooling process available to it.
+  </span></p>
+
+  <!-- ========================================
+       ALBEDO
+       ======================================== -->
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 32px;">
+    <span style="font-family: verdana;">
+      <a href="https://en.wikipedia.org/wiki/Albedo" target="_blank" rel="noopener" style="color: #9fc5d8; text-decoration: none;">Albedo</a>
+    </span>
+  </h2>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    One detail that surprised me slightly was that sand reflects more sunlight than water. 
+    Sand often reflects 20 to 45 percent of sunlight, while water reflects 5 to 10 percent when the sun is overhead.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    At first glance, this might suggest that sand should heat more slowly because it reflects more light. 
+    But compared to the other factors like specific heat, conductivity, and depth of absorption, the effect is minor. 
+    It hinders but cannot overturn the overall behavior.
+  </span></p>
+
+  <!-- ========================================
+       CONCLUSION
+       ======================================== -->
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 32px;">
+    <span style="font-family: verdana;">Conclusion of the Investigation</span>
+  </h2>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    By the end of this small investigation, I realized that the sentence I once read and accepted had a deeper foundation than I ever imagined. 
+    Sand heats and cools faster because of several properties working together, and each contributes to the final behavior in its own way.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    It made me wonder how many other simple statements from school would reveal more depth if I revisited them now with a current understanding.
+  </span></p>
+  
+  <p><span style="font-family: verdana; color: #e8f1f2;">
+    I have a few such questions in mind, and I may explore them in future posts. 
+    If you have any similar childhood science facts that you once accepted without question, feel free to share them. 
+    Your suggestions might shape the next part of this series.
+  </span></p>
+  
+  <p><em><span style="font-family: verdana; color: #e8f1f2;">Have fun.</span></em></p>
+
+</section>
+
+<!-- ========================================
+     JAVASCRIPT FOR MOBILE CITATION TOOLTIPS
+     ======================================== -->
+<script>
+  // Enable click-to-show tooltips on mobile devices
+  document.querySelectorAll('.citation').forEach(citation => {
+    citation.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.classList.toggle('active');
+    });
+  });
+  
+  // Close tooltips when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.citation')) {
+      document.querySelectorAll('.citation.active').forEach(citation => {
+        citation.classList.remove('active');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
