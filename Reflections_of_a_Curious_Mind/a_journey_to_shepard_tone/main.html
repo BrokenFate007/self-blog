@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"></meta>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+  
+  <!-- ========================================
+       CSS STYLES FOR THE ENTIRE BLOG POST
+       ======================================== -->
+  
+  <style>
+        /* ===== BLOG NUMBER TAG ===== */
+    .blog-number {
+      text-align: left;
+      color: #999999;
+      font-size: 1.0rem;
+      margin-bottom: 8px;
+    }
+    /* ===== GLOBAL AUDIO PLAYER CARD STYLING ===== 
+       This style creates the dark gradient cards that contain
+       each audio player throughout the blog post */
+    .audio-card {
+      max-width: 480px;
+      margin: 40px auto;
+      padding: 20px 24px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      color: #e8f1f2;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    
+    /* ===== AUDIO CARD TEXT ELEMENTS ===== */
+    .audio-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    
+    .audio-subtitle {
+      font-size: 0.85rem;
+      opacity: 0.75;
+      margin-bottom: 12px;
+    }
+    
+    /* ===== PLAYBACK TIMER DISPLAY ===== 
+       Shows elapsed time in MM:SS format */
+    .timer {
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 14px;
+      font-variant-numeric: tabular-nums;
+    }
+    
+    /* ===== PLAY/STOP BUTTON STYLING ===== */
+    .play-btn {
+      display: block;
+      margin: 0 auto;
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: none;
+      background: #e8f1f2;
+      color: #203a43;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .play-btn:hover {
+      background: #d0e1e3;
+      transform: translateY(-1px);
+    }
+    
+    .play-btn:active {
+      transform: translateY(0);
+    }
+    
+    /* ===== STATUS TEXT (Ready/Playing/Loading) ===== */
+    .status-text {
+      text-align: center;
+      font-size: 0.8rem;
+      margin-top: 10px;
+      opacity: 0.6;
+    }
+    
+    /* ===== IMAGE CONTAINER STYLING =====
+       White background containers for graphs and visualizations */
+    .image-container {
+      background: white;
+      border-radius: 12px;
+      margin: 40px auto;
+      max-width: 680px;
+      padding: 12px;
+    }
+    
+    .image-container img {
+      display: block;
+      width: 100%;
+    }
+	.image-container-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-container-row .image-container {
+      margin: 0;              /* override vertical auto-centering */
+      max-width: 48%;         /* two cards in one row */
+    }
+
+    /* ===== VIDEO CONTAINER STYLING ===== */
+    .video-container {
+      margin: 40px auto;
+      max-width: 480px;
+      text-align: center;
+    }
+    
+/*<!-- ========================================
+     CSS STYLES FOR TABLES
+     Add this to the <style> section in the <head>
+     ======================================== -->*/
+
+  /* ===== TABLE CONTAINER =====
+     Wrapper for responsive scrolling on mobile */
+  .table-container {
+    max-width: 680px;
+    margin: 32px auto;
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  /* ===== MAIN TABLE STYLING ===== */
+  .shepard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: verdana, sans-serif;
+    background: white;
+    font-size: 0.95rem;
+  }
+
+  /* ===== TABLE CAPTION/TITLE ===== */
+  .shepard-table caption {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c5364;
+    padding: 16px;
+    text-align: left;
+    background: linear-gradient(135deg, #e8f4f8, #d4e9f0);
+    border-radius: 12px 12px 0 0;
+  }
+
+  /* ===== TABLE HEADER ===== */
+  .shepard-table thead {
+    background: linear-gradient(135deg, #7fb3d5, #9fc5d8);
+    color: white;
+  }
+
+  .shepard-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #5a8ca8;
+  }
+
+  /* ===== TABLE BODY CELLS ===== */
+  .shepard-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+  }
+
+  /* ===== ALTERNATING ROW COLORS ===== */
+  .shepard-table tbody tr:nth-child(odd) {
+    background-color: #f9fbfc;
+  }
+
+  .shepard-table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+
+  /* ===== HOVER EFFECT ===== */
+  .shepard-table tbody tr:hover {
+    background-color: #e8f4f8;
+    transition: background-color 0.2s ease;
+  }
+
+  /* ===== SPECIAL COLUMN STYLING =====
+     For highlighting specific columns like frequency values */
+  .shepard-table .freq-column {
+    font-weight: 600;
+    color: #2c5364;
+    font-family: 'Courier New', monospace;
+  }
+
+  .shepard-table .note-column {
+    font-style: italic;
+    color: #5a8ca8;
+  }
+
+  /* ===== LAST ROW (no bottom border) ===== */
+  .shepard-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* ===== RESPONSIVE DESIGN ===== */
+  @media (max-width: 600px) {
+    .shepard-table {
+      font-size: 0.85rem;
+    }
+    
+    .shepard-table th,
+    .shepard-table td {
+      padding: 10px 12px;
+    }
+    
+    .shepard-table caption {
+      font-size: 1rem;
+      padding: 12px;
+    }
+  }
+
+  /* ========================================
+     ADD THIS CSS TO YOUR <style> SECTION
+     ======================================== */
+
+  /* ===== CITATION STYLING ===== */
+  .citation {
+    position: relative;
+    display: inline-block;
+    color: #2c5364;
+    font-weight: 600;
+    cursor: help;
+    text-decoration: none;
+    vertical-align: super;
+    font-size: 0.85em;
+  }
+  
+  /* ===== CITATION TOOLTIP ===== */
+  .citation .citation-text {
+    visibility: hidden;
+    opacity: 0;
+    width: 320px;
+    background-color: #2c5364;
+    color: #e8f1f2;
+    text-align: left;
+    border-radius: 8px;
+    padding: 12px 14px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -160px;
+    font-size: 0.85rem;
+    font-weight: normal;
+    line-height: 1.5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: opacity 0.3s, visibility 0.3s;
+    vertical-align: baseline;
+  }
+  
+  /* ===== TOOLTIP ARROW ===== */
+  .citation .citation-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #2c5364 transparent transparent transparent;
+  }
+  
+  /* ===== SHOW ON HOVER (Desktop) ===== */
+  .citation:hover .citation-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* ===== SHOW ON CLICK (Mobile) ===== */
+  .citation.active .citation-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* ===== CITATION LINK INSIDE TOOLTIP ===== */
+  .citation-link {
+    color: #9fc5d8;
+    text-decoration: underline;
+    word-break: break-all;
+  }
+  
+  .citation-link:hover {
+    color: #b7d7e8;
+  }
+  
+  /* ===== RESPONSIVE DESIGN ===== */
+  @media (max-width: 600px) {
+    .citation .citation-text {
+      width: 280px;
+      margin-left: -140px;
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+
+<!-- ============================================================
+     MAIN BLOG CONTENT SECTION
+     All content is wrapped in this section with consistent styling
+     ============================================================ -->
+  <p class="blog-number"><small>[Blog #4.2]</small></p>
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <!-- ========================================
+       TITLE AND INTRODUCTION
+       ======================================== -->
+
+  <p><span style="font-family: verdana;">
+    Close your eyes and imagine climbing a staircase that never ends. 
+    Each step takes you higher, yet somehow you never reach the top. 
+    You are ascending, perpetually, impossibly. 
+    This is not a dream, nor is it architecture, it is sound.
+  </span></p>
+<!--more-->
+  <p><span style="font-family: verdana;">
+    Let us begin by listening carefully to the following short piece composed by Hans Zimmer for the film <em>Dunkirk</em>.
+    The piece carries a peculiar perceptual tension.
+    As the sound unfolds, you can feel an uncanny sensation:
+    the pitch appears to be rising continuously, without ever reaching a peak.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    The sound seems to go upward forever without arrival of any climax.
+    This experience is not accidental, nor is it a trick of imagination.
+    It is a carefully constructed auditory illusion.
+  </span></p>
+  <!-- ========================================
+       EMBEDDED YOUTUBE VIDEO: DUNKIRK SOUNDTRACK
+       ======================================== -->
+
+  <div class="video-container">
+    <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="270" src="https://www.youtube.com/embed/n1VJ39nVIBk" style="border-radius: 12px;" title="Hans Zimmer - Dunkirk Soundtrack" width="100%">
+    </iframe>
+  </div>
+
+  <p><span style="font-family: verdana;">
+    The effect you are hearing is known as the <strong>Shepard–Risset Glissando</strong>,
+    a phenomenon that exploits the way the human brain interprets pitch and continuity.
+  </span></p>
+
+  <!-- ========================================
+       DEFINING SHEPARD TONE
+       ======================================== -->
+
+  <h3 style="color: #9fc5d8; margin-top: 32px;">
+    <span style="font-family: verdana;">What Is a Shepard Tone?</span>
+  </h3>
+
+  <p><span style="font-family: verdana;">
+    A <strong><a href="https://en.wikipedia.org/wiki/Shepard_tone" target="_blank">Shepard tone</a></strong> is an auditory illusion in which a sequence of tones creates the impression
+    of a pitch that endlessly ascends or descends.
+    In reality, the sound never truly becomes higher or lower.
+    Instead, multiple tones spaced an <a href="https://en.wikipedia.org/wiki/Octave" target="_blank">octave</a> apart fade in and out in a precise pattern,
+    convincing the auditory system that motion is occurring where none exists.
+  </span></p>
+
+  <h3 style="color: #9fc5d8; margin-top: 32px;">
+    <span style="font-family: verdana;">The Shepard–Risset Glissando</span>
+  </h3>
+
+  <p><span style="font-family: verdana;">
+    The Shepard–Risset <a href="https://en.wikipedia.org/wiki/Glissando">Glissando</a> extends this idea further.
+    Rather than using discrete steps, it produces a smooth and continuous slide in pitch.
+    The result is a seamless glissando <em>(from Italian/French for "to slide")</em> that appears infinite, a sonic staircase with no first step and no last.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    What makes this illusion especially powerful is its psychological effect.
+    The ear hears movement; the mind anticipates resolution.
+    Yet resolution never arrives.
+    In <em>Dunkirk</em>, this perpetual rise mirrors the film's emotional landscape:
+    sustained tension, delayed release, and an unbroken sense of urgency.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    But to truly grasp how this works, we must deconstruct the illusion piece by piece,
+    starting with the most fundamental properties of sound.
+  </span></p>
+
+</section>
+
+<!-- ============================================================
+     SECTION 1: FREQUENCY (PITCH)
+     ============================================================ -->
+
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 48px;">
+    <span style="font-family: verdana;">Frequency: The Language of Pitch</span>
+  </h2>
+
+  <p><span style="font-family: verdana;">
+    To move forward, we must step away from illusion and return to fundamentals.
+    One of the most basic physical properties of sound is <strong><a href="https://en.wikipedia.org/wiki/Frequency" target="_blank">frequency</a></strong>.
+    In acoustics, frequency refers to the number of oscillations a sound wave completes per second,
+    measured in hertz (Hz).
+    Perceptually, this physical quantity is experienced as <strong><a href="https://en.wikipedia.org/wiki/Pitch_%28music%29" target="_blank">pitch</a></strong>.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    As frequency increases, the perceived pitch rises.
+    As frequency decreases, the perceived pitch falls.
+    This relationship holds regardless of how loud the sound is,
+    allowing pitch and loudness to be examined independently<span class="citation">[1]
+    <span class="citation-text">
+      Stevens, S. S., and J. Volkmann. "The Relation of Pitch to Frequency: A Revised Scale." <em>The American Journal of Psychology</em> 53, no. 3 (1940): 329–53. 
+      <a class="citation-link" href="https://doi.org/10.2307/1417526" rel="noopener noreferrer" target="_blank">https://doi.org/10.2307/1417526</a>
+    </span>
+  </span>.
+  </span></p>
+
+  <h3 style="color: #9fc5d8; margin-top: 32px;">
+    <span style="font-family: verdana;">Fixed Frequency, Constant Loudness</span>
+  </h3>
+
+  <p><span style="font-family: verdana;">
+    Below are examples of pure sine waves played at a constant loudness of 50%.
+    The first sound has a frequency of 500 Hz,
+    while the second is played at 1000 Hz.
+    Apart from frequency, all other parameters remain unchanged.
+  </span></p>
+
+  <!-- ========================================
+       AUDIO PLAYER 1: 500 Hz @ 50%
+       ======================================== -->
+
+  <div class="audio-card">
+    <div class="audio-title">Continuous 500 Hz Sine Wave</div>
+    <div class="audio-subtitle">Relative amplitude = 0.5</div>
+    <div class="timer" id="timer1">00:00</div>
+    <button class="play-btn" id="playBtn1">▶ Play</button>
+    <div class="status-text" id="status1">Ready</div>
+  </div>
+
+  <script>
+  //<![CDATA[
+  (function() {
+    var audioCtx = null, buffer = null, source = null, playing = false;
+    var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/67bb6b34364da530e045d893e9d7f4a228470a20/Reflections%20of%20a%20Curious%20Mind/Shepherd_tone/sound/Sine_500Hz_50Loud.wav";
+    var startTime = 0, timerInterval = null;
+    var timerEl = document.getElementById("timer1");
+    var playBtn = document.getElementById("playBtn1");
+    var statusEl = document.getElementById("status1");
+    
+    function formatTime(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    
+    function loadAudio() {
+      return new Promise(function(resolve, reject) {
+        statusEl.textContent = "Loading...";
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        fetch(url)
+          .then(function(r) { if (!r.ok) throw new Error("Failed"); return r.arrayBuffer(); })
+          .then(function(b) { return audioCtx.decodeAudioData(b); })
+          .then(function(d) { buffer = d; statusEl.textContent = "Ready"; resolve(); })
+          .catch(function(e) { statusEl.textContent = "Error"; reject(e); });
+      });
+    }
+    
+    playBtn.addEventListener("click", function() {
+      if (!audioCtx) { loadAudio().then(togglePlayback); } else { togglePlayback(); }
+    });
+    
+    function togglePlayback() {
+      if (!playing) {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        var gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+        source.connect(gain);
+        gain.connect(audioCtx.destination);
+        source.start(0);
+        startTime = performance.now();
+        timerInterval = setInterval(function() { timerEl.textContent = formatTime(performance.now() - startTime); }, 250);
+        playing = true;
+        playBtn.innerHTML = "⏸ Stop";
+        statusEl.textContent = "Playing...";
+      } else {
+        if (source) source.stop();
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        playing = false;
+        playBtn.innerHTML = "▶ Play";
+        statusEl.textContent = "Stopped";
+      }
+    }
+  })();
+  //]]>
+  </script>
+
+
+
+  <!-- ========================================
+       AUDIO PLAYER 2: 1000 Hz @ 50%
+       ======================================== -->
+
+  <div class="audio-card">
+    <div class="audio-title">Continuous 1000 Hz Sine Wave</div>
+    <div class="audio-subtitle">Relative amplitude = 0.5</div>
+    <div class="timer" id="timer2">00:00</div>
+    <button class="play-btn" id="playBtn2">▶ Play</button>
+    <div class="status-text" id="status2">Ready</div>
+  </div>
+
+  <script>
+  //<![CDATA[
+  (function() {
+    var audioCtx = null, buffer = null, source = null, playing = false;
+    var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/200e696c898fe5f9b361b55a8ee24c913d5d8dc0/Reflections%20of%20a%20Curious%20Mind/Shepherd_tone/sound/Sine_1000Hz_50Loud.wav";
+    var startTime = 0, timerInterval = null;
+    var timerEl = document.getElementById("timer2");
+    var playBtn = document.getElementById("playBtn2");
+    var statusEl = document.getElementById("status2");
+    
+    function formatTime(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    
+    function loadAudio() {
+      statusEl.textContent = "Loading...";
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      fetch(url)
+        .then(r => r.arrayBuffer())
+        .then(b => audioCtx.decodeAudioData(b))
+        .then(d => { buffer = d; statusEl.textContent = "Ready"; })
+        .catch(e => { statusEl.textContent = "Error"; });
+    }
+    
+    playBtn.addEventListener("click", function() {
+      if (!audioCtx) { loadAudio(); setTimeout(togglePlayback, 300); } else { togglePlayback(); }
+    });
+    
+    function togglePlayback() {
+      if (!playing) {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        var gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+        source.connect(gain);
+        gain.connect(audioCtx.destination);
+        source.start();
+        startTime = performance.now();
+        timerInterval = setInterval(() => { timerEl.textContent = formatTime(performance.now() - startTime); }, 250);
+        playing = true;
+        playBtn.innerHTML = "⏸ Stop";
+        statusEl.textContent = "Playing...";
+      } else {
+        source.stop();
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        playing = false;
+        playBtn.innerHTML = "▶ Play";
+        statusEl.textContent = "Stopped";
+      }
+    }
+  })();
+  //]]>
+  </script>
+
+  <p><span style="font-family: verdana;">
+    When listening to these sounds, the distinction is immediate.
+    The 1000 Hz tone is perceived as higher in pitch than the 500 Hz tone,
+    despite both having identical loudness.
+    This demonstrates a key principle: <strong>pitch is governed by frequency, not amplitude</strong>.
+  </span></p>
+
+</section>
+
+<!-- ============================================================
+     SECTION 2: AMPLITUDE (LOUDNESS)
+     ============================================================ -->
+
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 48px;">
+    <span style="font-family: verdana;">Amplitude: The Measure of Loudness</span>
+  </h2>
+
+  <p><span style="font-family: verdana;">
+    If frequency determines pitch, what determines <a href="https://en.wikipedia.org/wiki/Loudness" target="_blank">loudness</a>?
+    The answer lies in <strong><a href="https://en.wikipedia.org/wiki/Amplitude" target="_blank">amplitude</a></strong>, the height of the sound wave.
+    A wave with greater amplitude carries more energy and is perceived as louder.
+    Crucially, changing amplitude does not change pitch.
+  </span></p>
+
+  <h3 style="color: #9fc5d8; margin-top: 32px;">
+    <span style="font-family: verdana;">Same Pitch, Different Volume</span>
+  </h3>
+
+  <p><span style="font-family: verdana;">
+    Below are two versions of the same 1000 Hz sine wave.
+    The first is played at 10% amplitude, the second at 90%.
+    The frequency remains identical, only the loudness changes.
+  </span></p>
+
+  <!-- ========================================
+       AUDIO PLAYER 3: 500 Hz @ 50%
+       ======================================== -->
+
+  <div class="audio-card">
+    <div class="audio-title">Continuous 1000 Hz Sine Wave</div>
+    <div class="audio-subtitle">Relative amplitude = 0.1</div>
+    <div class="timer" id="timer3">00:00</div>
+    <button class="play-btn" id="playBtn3">▶ Play</button>
+    <div class="status-text" id="status3">Ready</div>
+  </div>
+
+  <script>
+  //<![CDATA[
+  (function() {
+    var audioCtx = null, buffer = null, source = null, playing = false;
+    var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/607f815e07ff73a7f4f0dd28cc4a00bd36c00e4a/Reflections_of_a_Curious_Mind/Shepherd_tone/sound/Sine_1000Hz_10Loud.wav";
+    var startTime = 0, timerInterval = null;
+    var timerEl = document.getElementById("timer3");
+    var playBtn = document.getElementById("playBtn3");
+    var statusEl = document.getElementById("status3");
+    
+    function formatTime(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    
+    function loadAudio() {
+      return new Promise(function(resolve, reject) {
+        statusEl.textContent = "Loading...";
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        fetch(url)
+          .then(function(r) { if (!r.ok) throw new Error("Failed"); return r.arrayBuffer(); })
+          .then(function(b) { return audioCtx.decodeAudioData(b); })
+          .then(function(d) { buffer = d; statusEl.textContent = "Ready"; resolve(); })
+          .catch(function(e) { statusEl.textContent = "Error"; reject(e); });
+      });
+    }
+    
+    playBtn.addEventListener("click", function() {
+      if (!audioCtx) { loadAudio().then(togglePlayback); } else { togglePlayback(); }
+    });
+    
+    function togglePlayback() {
+      if (!playing) {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        var gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+        source.connect(gain);
+        gain.connect(audioCtx.destination);
+        source.start(0);
+        startTime = performance.now();
+        timerInterval = setInterval(function() { timerEl.textContent = formatTime(performance.now() - startTime); }, 250);
+        playing = true;
+        playBtn.innerHTML = "⏸ Stop";
+        statusEl.textContent = "Playing...";
+      } else {
+        if (source) source.stop();
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        playing = false;
+        playBtn.innerHTML = "▶ Play";
+        statusEl.textContent = "Stopped";
+      }
+    }
+  })();
+  //]]>
+  </script>
+
+  <!-- ========================================
+       AUDIO PLAYER 4: 500 Hz @ 80%
+       ======================================== -->
+
+  <div class="audio-card">
+    <div class="audio-title">Continuous 1000 Hz Sine Wave</div>
+    <div class="audio-subtitle">Relative amplitude = 0.9</div>
+    <div class="timer" id="timer4">00:00</div>
+    <button class="play-btn" id="playBtn4">▶ Play</button>
+    <div class="status-text" id="status4">Ready</div>
+  </div>
+
+  <script>
+  //<![CDATA[
+  (function() {
+    var audioCtx = null, buffer = null, source = null, playing = false;
+    var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/607f815e07ff73a7f4f0dd28cc4a00bd36c00e4a/Reflections_of_a_Curious_Mind/Shepherd_tone/sound/Sine_1000Hz_90Loud.wav";
+    var startTime = 0, timerInterval = null;
+    var timerEl = document.getElementById("timer4");
+    var playBtn = document.getElementById("playBtn4");
+    var statusEl = document.getElementById("status4");
+    
+    function formatTime(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    
+    function loadAudio() {
+      return new Promise(function(resolve, reject) {
+        statusEl.textContent = "Loading...";
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        fetch(url)
+          .then(function(r) { if (!r.ok) throw new Error("Failed"); return r.arrayBuffer(); })
+          .then(function(b) { return audioCtx.decodeAudioData(b); })
+          .then(function(d) { buffer = d; statusEl.textContent = "Ready"; resolve(); })
+          .catch(function(e) { statusEl.textContent = "Error"; reject(e); });
+      });
+    }
+    
+    playBtn.addEventListener("click", function() {
+      if (!audioCtx) { loadAudio().then(togglePlayback); } else { togglePlayback(); }
+    });
+    
+    function togglePlayback() {
+      if (!playing) {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        var gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+        source.connect(gain);
+        gain.connect(audioCtx.destination);
+        source.start(0);
+        startTime = performance.now();
+        timerInterval = setInterval(function() { timerEl.textContent = formatTime(performance.now() - startTime); }, 250);
+        playing = true;
+        playBtn.innerHTML = "⏸ Stop";
+        statusEl.textContent = "Playing...";
+      } else {
+        if (source) source.stop();
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        playing = false;
+        playBtn.innerHTML = "▶ Play";
+        statusEl.textContent = "Stopped";
+      }
+    }
+  })();
+  //]]>
+  </script>
+
+  <p><span style="font-family: verdana;">
+    The pitch of both sounds is identical, both oscillate at exactly 1000 Hz.
+    Yet the second sound is noticeably louder.
+    This confirms that frequency and amplitude are independent properties:
+    one controls <em>what</em> we hear (pitch), the other controls <em>how much</em> we hear (loudness).
+  </span></p>
+
+</section>
+
+<!-- ============================================================
+     SECTION 3: FREQUENCY SWEEP
+     ============================================================ -->
+
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 48px;">
+    <span style="font-family: verdana;">Movement Through Frequency Domain</span>
+  </h2>
+
+  <p><span style="font-family: verdana;">
+    So far, we have examined static sounds, tones that hold steady at a single frequency.
+    But what happens when frequency changes continuously over time?
+    This is called a <strong>frequency sweep</strong> or <strong>glissando</strong>.
+  </span></p>
+
+  <h3 style="color: #9fc5d8; margin-top: 32px;">
+    <span style="font-family: verdana;">Continuous Rise: 100 Hz to 1000 Hz</span>
+  </h3>
+
+  <p><span style="font-family: verdana;">
+    Below is a sine wave that starts at 100 Hz and smoothly rises to 1000 Hz over several seconds,
+    all while maintaining a constant amplitude of 50%.
+    Listen carefully to how the pitch climbs steadily upward.
+    This is a real ascent, the frequency is genuinely increasing.
+  </span></p>
+
+  <!-- ========================================
+       AUDIO PLAYER 5: FREQUENCY SWEEP 100-1000 Hz
+       ======================================== -->
+
+  <div class="audio-card">
+    <div class="audio-title">Frequency Sweep: 100 Hz → 1000 Hz</div>
+    <div class="audio-subtitle">Relative amplitude = 0.5</div>
+    <div class="timer" id="timer5">00:00</div>
+    <button class="play-btn" id="playBtn5">▶ Play</button>
+    <div class="status-text" id="status5">Ready</div>
+  </div>
+
+  <script>
+  //<![CDATA[
+  (function() {
+    var audioCtx = null, buffer = null, source = null, playing = false;
+    var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/607f815e07ff73a7f4f0dd28cc4a00bd36c00e4a/Reflections_of_a_Curious_Mind/Shepherd_tone/sound/Sine_100-1000Hz_50Loud.wav";
+    var startTime = 0, timerInterval = null;
+    var timerEl = document.getElementById("timer5");
+    var playBtn = document.getElementById("playBtn5");
+    var statusEl = document.getElementById("status5");
+    
+    function formatTime(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    
+    function loadAudio() {
+      return new Promise(function(resolve, reject) {
+        statusEl.textContent = "Loading...";
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        fetch(url)
+          .then(function(r) { if (!r.ok) throw new Error("Failed"); return r.arrayBuffer(); })
+          .then(function(b) { return audioCtx.decodeAudioData(b); })
+          .then(function(d) { buffer = d; statusEl.textContent = "Ready"; resolve(); })
+          .catch(function(e) { statusEl.textContent = "Error"; reject(e); });
+      });
+    }
+    
+    playBtn.addEventListener("click", function() {
+      if (!audioCtx) { loadAudio().then(togglePlayback); } else { togglePlayback(); }
+    });
+    
+    function togglePlayback() {
+      if (!playing) {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        var gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+        source.connect(gain);
+        gain.connect(audioCtx.destination);
+        source.start(0);
+        startTime = performance.now();
+        timerInterval = setInterval(function() { timerEl.textContent = formatTime(performance.now() - startTime); }, 250);
+        source.onended = function() {
+          clearInterval(timerInterval);
+          timerEl.textContent = "00:00";
+          playing = false;
+          playBtn.innerHTML = "▶ Play";
+          statusEl.textContent = "Finished";
+        };
+        playing = true;
+        playBtn.innerHTML = "⏸ Stop";
+        statusEl.textContent = "Playing...";
+      } else {
+        if (source) source.stop();
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        playing = false;
+        playBtn.innerHTML = "▶ Play";
+        statusEl.textContent = "Stopped";
+      }
+    }
+  })();
+  //]]>
+  </script>
+  
+    <!-- Graphs for Sine 100–1000 Hz at 50% Loudness -->
+<div class="image-container-row">
+  <div class="image-container">
+    <img alt="Frequency spectrum of sine wave from 100 to 1000 Hz at 50% amplitude" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/607f815e07ff73a7f4f0dd28cc4a00bd36c00e4a/Reflections_of_a_Curious_Mind/graph/freq_plot_Sine_100-1000Hz_50Loud.svg" />
+  </div>
+
+  <div class="image-container">
+    <img alt="Waveform of sine wave from 100 to 1000 Hz at 50% amplitude" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/607f815e07ff73a7f4f0dd28cc4a00bd36c00e4a/Reflections_of_a_Curious_Mind/graph/audioplot_Sine_100-1000Hz_50Loud.svg" />
+  </div>
+</div>
+
+  <p><span style="font-family: verdana;">
+    This is the sound of genuine motion.
+    The frequency increases linearly, and our ears follow it without confusion.
+    There is a clear beginning at 100 Hz and a clear end at 1000 Hz.
+    But what if we could make this ascent loop back on itself, creating the illusion that it never stops?
+  </span></p>
+
+</section>
+
+<!-- ============================================================
+     SECTION 4: LOUDNESS SWEEP
+     ============================================================ -->
+
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 48px;">
+    <span style="font-family: verdana;">Fading In and Out: Amplitude Envelopes</span>
+  </h2>
+
+  <p><span style="font-family: verdana;">
+    Just as frequency can change over time, so too can amplitude.
+    An <strong>amplitude envelope</strong> describes how the loudness of a sound evolves from silence to full volume and back again.
+    This technique is crucial for creating the Shepard tone illusion.
+  </span></p>
+
+  <h3 style="color: #9fc5d8; margin-top: 32px;">
+    <span style="font-family: verdana;">Fixed Pitch, Changing Volume</span>
+  </h3>
+
+  <p><span style="font-family: verdana;">
+    Below is a 500 Hz sine wave whose amplitude gradually increases from 0% to 100% over time.
+    The pitch never changes, only the loudness.
+    Notice how the sound emerges from silence and grows to full strength.
+  </span></p>
+
+  <!-- ========================================
+       AUDIO PLAYER 6: AMPLITUDE SWEEP 0-100%
+       ======================================== -->
+
+  <div class="audio-card">
+    <div class="audio-title">Amplitude Sweep: 500 Hz</div>
+    <div class="audio-subtitle">Amplitude: 0% → 100%</div>
+    <div class="timer" id="timer6">00:00</div>
+    <button class="play-btn" id="playBtn6">▶ Play</button>
+    <div class="status-text" id="status6">Ready</div>
+  </div>
+
+  <script>
+  //<![CDATA[
+  (function() {
+    var audioCtx = null, buffer = null, source = null, playing = false;
+    var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/607f815e07ff73a7f4f0dd28cc4a00bd36c00e4a/Reflections_of_a_Curious_Mind/Shepherd_tone/sound/Sine_500Hz_0-100Loud.wav";
+    var startTime = 0, timerInterval = null;
+    var timerEl = document.getElementById("timer6");
+    var playBtn = document.getElementById("playBtn6");
+    var statusEl = document.getElementById("status6");
+    
+    function formatTime(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    
+    function loadAudio() {
+      return new Promise(function(resolve, reject) {
+        statusEl.textContent = "Loading...";
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        fetch(url)
+          .then(function(r) { if (!r.ok) throw new Error("Failed"); return r.arrayBuffer(); })
+          .then(function(b) { return audioCtx.decodeAudioData(b); })
+          .then(function(d) { buffer = d; statusEl.textContent = "Ready"; resolve(); })
+          .catch(function(e) { statusEl.textContent = "Error"; reject(e); });
+      });
+    }
+    
+    playBtn.addEventListener("click", function() {
+      if (!audioCtx) { loadAudio().then(togglePlayback); } else { togglePlayback(); }
+    });
+    
+    function togglePlayback() {
+      if (!playing) {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        var gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+        source.connect(gain);
+        gain.connect(audioCtx.destination);
+        source.start(0);
+        startTime = performance.now();
+        timerInterval = setInterval(function() { timerEl.textContent = formatTime(performance.now() - startTime); }, 250);
+        source.onended = function() {
+          clearInterval(timerInterval);
+          timerEl.textContent = "00:00";
+          playing = false;
+          playBtn.innerHTML = "▶ Play";
+          statusEl.textContent = "Finished";
+        };
+        playing = true;
+        playBtn.innerHTML = "⏸ Stop";
+        statusEl.textContent = "Playing...";
+      } else {
+        if (source) source.stop();
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        playing = false;
+        playBtn.innerHTML = "▶ Play";
+        statusEl.textContent = "Stopped";
+      }
+    }
+  })();
+  //]]>
+  </script>
+  
+    <!-- Graph for 500 Hz (0–100% Loudness) -->
+    <div class="image-container">
+      <img alt="Waveform of 500 Hz sine wave with amplitude varying from 0 to 100 percent" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/4ca50ed25eaf00e7c2f1babd57e0585712a3bedf/Reflections_of_a_Curious_Mind/graph/audioplot_Sine_500Hz_0-100Loud.svg" />
+    </div>
+
+
+  <p><span style="font-family: verdana;">
+    This fading technique will become essential.
+    In the Shepard tone, multiple tones must fade in and out at precisely the right moments,
+    creating a perceptual "handoff" that tricks the brain into hearing continuous motion.
+  </span></p>
+
+</section>
+  
+  
+  <!-- ========================================
+     SECTION: FREQUENCY TABLE
+     Add this section to your blog
+     ======================================== -->
+
+<!-- ========================================
+     SECTION: FREQUENCY TABLE (WITHOUT RATIO COLUMN)
+     ======================================== -->
+
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 48px;">
+    <span style="font-family: verdana;">The Mathematics of Octaves</span>
+  </h2>
+
+  <p><span style="font-family: verdana;">
+    The Shepard tone's illusion is built on a precise mathematical foundation.
+    Two frequency lines are used, each spanning exactly one octave.
+    An octave represents a doubling of frequency, when a sound's frequency doubles, 
+    we perceive it as the "same" note, just higher.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    Below is the complete frequency structure used in this demonstration.
+    Notice how Line 1 ends at 353.6 Hz, and Line 2 begins at exactly that same frequency.
+    This overlap is the key to creating seamless perceptual continuity.
+  </span></p>
+
+  <!-- TABLE CONTAINER -->
+  <div class="table-container">
+    <table class="shepard-table">
+      <caption>Dual-Octave Frequency Structure</caption>
+      <thead>
+        <tr>
+          <th>Sample Point</th>
+          <th>Line 1 Frequency (Hz)</th>
+          <th>Line 2 Frequency (Hz)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="freq-column">176.8</td>
+          <td class="freq-column">353.6</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="freq-column">182.0</td>
+          <td class="freq-column">364.0</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="freq-column">187.3</td>
+          <td class="freq-column">374.6</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="freq-column">192.8</td>
+          <td class="freq-column">385.6</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td class="freq-column">198.5</td>
+          <td class="freq-column">396.9</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td class="freq-column">204.3</td>
+          <td class="freq-column">408.5</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td class="freq-column">210.3</td>
+          <td class="freq-column">420.5</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td class="freq-column">216.4</td>
+          <td class="freq-column">432.8</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td class="freq-column">222.6</td>
+          <td class="freq-column">445.3</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td class="freq-column">229.3</td>
+          <td class="freq-column">458.6</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td class="freq-column">236.0</td>
+          <td class="freq-column">472.0</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td class="freq-column">242.9</td>
+          <td class="freq-column">485.8</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td class="freq-column">250.0</td>
+          <td class="freq-column">500.1</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td class="freq-column">257.4</td>
+          <td class="freq-column">514.7</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td class="freq-column">264.9</td>
+          <td class="freq-column">529.8</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td class="freq-column">272.7</td>
+          <td class="freq-column">545.3</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td class="freq-column">280.7</td>
+          <td class="freq-column">561.3</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td class="freq-column">288.9</td>
+          <td class="freq-column">577.8</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td class="freq-column">297.3</td>
+          <td class="freq-column">594.7</td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td class="freq-column">306.1</td>
+          <td class="freq-column">612.1</td>
+        </tr>
+        <tr>
+          <td>21</td>
+          <td class="freq-column">315.0</td>
+          <td class="freq-column">630.0</td>
+        </tr>
+        <tr>
+          <td>22</td>
+          <td class="freq-column">324.3</td>
+          <td class="freq-column">648.5</td>
+        </tr>
+        <tr>
+          <td>23</td>
+          <td class="freq-column">333.8</td>
+          <td class="freq-column">667.5</td>
+        </tr>
+        <tr>
+          <td>24</td>
+          <td class="freq-column">343.5</td>
+          <td class="freq-column">687.1</td>
+        </tr>
+        <tr>
+          <td>25</td>
+          <td class="freq-column">353.6</td>
+          <td class="freq-column">707.2</td>
+        </tr>
+        <tr style="background-color: #e8f4f8; font-weight: 600;">
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+
+
+<!-- ============================================================
+     SECTION 5: TOWARD SHEPARD TONE - DISCRETE SWEEP (CONSTANT LOUDNESS)
+     ============================================================ -->
+
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 48px;">
+    <span style="font-family: verdana;">Toward the Illusion: Two Octaves Apart</span>
+  </h2>
+
+  <p><span style="font-family: verdana;">
+    Now we begin constructing the illusion itself.
+    The key insight is this: tones separated by an octave are perceived as harmonically related, almost as the "same" note, just higher or lower.
+    If we create two frequency sweeps an octave apart and play them simultaneously,
+    something remarkable happens.
+  </span></p>
+ 
+
+
+  <h3 style="color: #9fc5d8; margin-top: 32px;">
+    <span style="font-family: verdana;">Line 1: Rising from 177 Hz to 343 Hz</span>
+  </h3>
+
+  <p><span style="font-family: verdana;">
+    This sweep covers one octave, starting at a low frequency and climbing upward.
+    The amplitude remains constant at 100%.
+  </span></p>
+
+  <!-- ========================================
+       AUDIO PLAYER 7: LINE 1 (177-343 Hz, 100% Loudness)
+       ======================================== -->
+
+  <div class="audio-card">
+    <div class="audio-title">Line 1: 177 Hz → 343 Hz</div>
+    <div class="audio-subtitle">Amplitude = 100% (constant)</div>
+    <div class="timer" id="timer7">00:00</div>
+    <button class="play-btn" id="playBtn7">▶ Play</button>
+    <div class="status-text" id="status7">Ready</div>
+  </div>
+
+  <script>
+  //<![CDATA[
+  (function() {
+    var audioCtx = null, buffer = null, source = null, playing = false;
+    var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/607f815e07ff73a7f4f0dd28cc4a00bd36c00e4a/Reflections_of_a_Curious_Mind/Shepherd_tone/sound/Sine_177-343Hz_100Loud.wav";
+    var startTime = 0, timerInterval = null;
+    var timerEl = document.getElementById("timer7");
+    var playBtn = document.getElementById("playBtn7");
+    var statusEl = document.getElementById("status7");
+    
+    function formatTime(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    
+    function loadAudio() {
+      return new Promise(function(resolve, reject) {
+        statusEl.textContent = "Loading...";
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        fetch(url)
+          .then(function(r) { if (!r.ok) throw new Error("Failed"); return r.arrayBuffer(); })
+          .then(function(b) { return audioCtx.decodeAudioData(b); })
+          .then(function(d) { buffer = d; statusEl.textContent = "Ready"; resolve(); })
+          .catch(function(e) { statusEl.textContent = "Error"; reject(e); });
+      });
+    }
+    
+    playBtn.addEventListener("click", function() {
+      if (!audioCtx) { loadAudio().then(togglePlayback); } else { togglePlayback(); }
+    });
+    
+    function togglePlayback() {
+      if (!playing) {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        var gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+        source.connect(gain);
+        gain.connect(audioCtx.destination);
+        source.start(0);
+        startTime = performance.now();
+        timerInterval = setInterval(function() { timerEl.textContent = formatTime(performance.now() - startTime); }, 250);
+        source.onended = function() {
+          clearInterval(timerInterval);
+          timerEl.textContent = "00:00";
+          playing = false;
+          playBtn.innerHTML = "▶ Play";
+          statusEl.textContent = "Finished";
+        };
+        playing = true;
+        playBtn.innerHTML = "⏸ Stop";
+        statusEl.textContent = "Playing...";
+      } else {
+        if (source) source.stop();
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        playing = false;
+        playBtn.innerHTML = "▶ Play";
+        statusEl.textContent = "Stopped";
+      }
+    }
+  })();
+  //]]>
+  </script>
+	<!-- Graphs for Sine 177–343 Hz at 100% Loudness -->
+    <div class="image-container-row">
+      <div class="image-container">
+        <img alt="Frequency spectrum of sine wave from 177 to 343 Hz at 100% amplitude" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/6bcf2f148fe5513143876db65f8104b00ca41b77/Reflections_of_a_Curious_Mind/graph/freq_plot_Sine_177-343Hz_100Loud.svg" />
+      </div>
+
+      <div class="image-container">
+        <img alt="Waveform of sine wave from 177 to 343 Hz at 100% amplitude" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/6bcf2f148fe5513143876db65f8104b00ca41b77/Reflections_of_a_Curious_Mind/graph/audioplot_Sine_177-343Hz_100Loud.svg" />
+      </div>
+    </div>
+
+  
+  <h3 style="color: #9fc5d8; margin-top: 32px;">
+    <span style="font-family: verdana;">Line 2: Rising from 343 Hz to 687 Hz</span>
+  </h3>
+
+  <p><span style="font-family: verdana;">
+    This sweep starts exactly where Line 1 ends (343 Hz) and rises to 687 Hz, another octave higher.
+    It too plays at constant 100% amplitude.
+  </span></p>
+
+  <!-- ========================================
+       AUDIO PLAYER 8: LINE 2 (343-687 Hz, 100% Loudness)
+       ======================================== -->
+
+  <div class="audio-card">
+    <div class="audio-title">Line 2: 343 Hz → 687 Hz</div>
+    <div class="audio-subtitle">Amplitude = 100% (constant)</div>
+    <div class="timer" id="timer8">00:00</div>
+    <button class="play-btn" id="playBtn8">▶ Play</button>
+    <div class="status-text" id="status8">Ready</div>
+  </div>
+
+  <script>
+  //<![CDATA[
+  (function() {
+    var audioCtx = null, buffer = null, source = null, playing = false;
+    var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/607f815e07ff73a7f4f0dd28cc4a00bd36c00e4a/Reflections_of_a_Curious_Mind/Shepherd_tone/sound/Sine_343-687Hz_100Loud.wav";
+    var startTime = 0, timerInterval = null;
+    var timerEl = document.getElementById("timer8");
+    var playBtn = document.getElementById("playBtn8");
+    var statusEl = document.getElementById("status8");
+    
+    function formatTime(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    
+    function loadAudio() {
+      return new Promise(function(resolve, reject) {
+        statusEl.textContent = "Loading...";
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        fetch(url)
+          .then(function(r) { if (!r.ok) throw new Error("Failed"); return r.arrayBuffer(); })
+          .then(function(b) { return audioCtx.decodeAudioData(b); })
+          .then(function(d) { buffer = d; statusEl.textContent = "Ready"; resolve(); })
+          .catch(function(e) { statusEl.textContent = "Error"; reject(e); });
+      });
+    }
+    
+    playBtn.addEventListener("click", function() {
+      if (!audioCtx) { loadAudio().then(togglePlayback); } else { togglePlayback(); }
+    });
+    
+    function togglePlayback() {
+      if (!playing) {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        var gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+        source.connect(gain);
+        gain.connect(audioCtx.destination);
+        source.start(0);
+        startTime = performance.now();
+        timerInterval = setInterval(function() { timerEl.textContent = formatTime(performance.now() - startTime); }, 250);
+        source.onended = function() {
+          clearInterval(timerInterval);
+          timerEl.textContent = "00:00";
+          playing = false;
+          playBtn.innerHTML = "▶ Play";
+          statusEl.textContent = "Finished";
+        };
+        playing = true;
+        playBtn.innerHTML = "⏸ Stop";
+        statusEl.textContent = "Playing...";
+      } else {
+        if (source) source.stop();
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        playing = false;
+        playBtn.innerHTML = "▶ Play";
+        statusEl.textContent = "Stopped";
+      }
+    }
+  })();
+  //]]>
+  </script>
+
+  
+  <!-- Graphs for Sine 343–687 Hz at 100% Loudness -->
+  <div class="image-container-row">
+    <div class="image-container">
+      <img alt="Frequency spectrum of sine wave from 343 to 687 Hz at 100% amplitude" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/6bcf2f148fe5513143876db65f8104b00ca41b77/Reflections_of_a_Curious_Mind/graph/freq_plot_Sine_343-687Hz_100Loud.svg" />
+    </div>
+
+    <div class="image-container">
+      <img alt="Waveform of sine wave from 343 to 687 Hz at 100% amplitude" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/6bcf2f148fe5513143876db65f8104b00ca41b77/Reflections_of_a_Curious_Mind/graph/audioplot_Sine_343-687Hz_100Loud.svg" />
+    </div>
+  </div>
+
+  <p><span style="font-family: verdana;">
+    Heard individually, these are simply two rising glissandos.
+    But they are carefully designed to overlap in a specific way.
+    When played together, they begin to hint at something more complex, though the illusion is not yet complete.
+  </span></p>
+
+</section>
+
+<!-- ============================================================
+     SECTION 6: TOWARD SHEPARD TONE - WITH FADING
+     ============================================================ -->
+
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 48px;">
+    <span style="font-family: verdana;">The Missing Ingredient: Amplitude Fading</span>
+  </h2>
+
+  <p><span style="font-family: verdana;">
+    The key to the Shepard tone is not just layering multiple frequencies, it is controlling their visibility.
+    By applying opposite amplitude envelopes to the two lines,
+    we create a perceptual handoff: as one tone fades out, the other fades in.
+    The brain perceives continuity, not replacement.
+  </span></p>
+
+  <h3 style="color: #9fc5d8; margin-top: 32px;">
+    <span style="font-family: verdana;">Line 1: Fading In (0% → 100%)</span>
+  </h3>
+
+  <p><span style="font-family: verdana;">
+    This version of Line 1 (177-343 Hz) starts silent and gradually becomes louder,
+    reaching full volume by the end.
+  </span></p>
+
+  <!-- ========================================
+       AUDIO PLAYER 9: LINE 1 WITH FADING (177-343 Hz, 0-100%)
+       ======================================== -->
+
+  <div class="audio-card">
+    <div class="audio-title">Line 1: 177 Hz → 343 Hz (Fading In)</div>
+    <div class="audio-subtitle">Amplitude: 0% → 100%</div>
+    <div class="timer" id="timer9">00:00</div>
+    <button class="play-btn" id="playBtn9">▶ Play</button>
+    <div class="status-text" id="status9">Ready</div>
+  </div>
+
+  <script>
+  //<![CDATA[
+  (function() {
+    var audioCtx = null, buffer = null, source = null, playing = false;
+    var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/607f815e07ff73a7f4f0dd28cc4a00bd36c00e4a/Reflections_of_a_Curious_Mind/Shepherd_tone/sound/Sine_177-343Hz_0-100Loud.wav";
+    var startTime = 0, timerInterval = null;
+    var timerEl = document.getElementById("timer9");
+    var playBtn = document.getElementById("playBtn9");
+    var statusEl = document.getElementById("status9");
+    
+    function formatTime(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    
+    function loadAudio() {
+      return new Promise(function(resolve, reject) {
+        statusEl.textContent = "Loading...";
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        fetch(url)
+          .then(function(r) { if (!r.ok) throw new Error("Failed"); return r.arrayBuffer(); })
+          .then(function(b) { return audioCtx.decodeAudioData(b); })
+          .then(function(d) { buffer = d; statusEl.textContent = "Ready"; resolve(); })
+          .catch(function(e) { statusEl.textContent = "Error"; reject(e); });
+      });
+    }
+    
+    playBtn.addEventListener("click", function() {
+      if (!audioCtx) { loadAudio().then(togglePlayback); } else { togglePlayback(); }
+    });
+    
+    function togglePlayback() {
+      if (!playing) {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        var gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+        source.connect(gain);
+        gain.connect(audioCtx.destination);
+        source.start(0);
+        startTime = performance.now();
+        timerInterval = setInterval(function() { timerEl.textContent = formatTime(performance.now() - startTime); }, 250);
+        source.onended = function() {
+          clearInterval(timerInterval);
+          timerEl.textContent = "00:00";
+          playing = false;
+          playBtn.innerHTML = "▶ Play";
+          statusEl.textContent = "Finished";
+        };
+        playing = true;
+        playBtn.innerHTML = "⏸ Stop";
+        statusEl.textContent = "Playing...";
+      } else {
+        if (source) source.stop();
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        playing = false;
+        playBtn.innerHTML = "▶ Play";
+        statusEl.textContent = "Stopped";
+      }
+    }
+  })();
+  //]]>
+  </script>
+
+  <!-- Graphs for Sine 177–343 Hz at 0–100% Loudness -->
+  <div class="image-container-row">
+    <div class="image-container">
+      <img alt="Frequency spectrum of sine wave from 177 to 343 Hz at 0–100% amplitude" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/6bcf2f148fe5513143876db65f8104b00ca41b77/Reflections_of_a_Curious_Mind/graph/freq_plot_Sine_177-343Hz_0-100Loud.svg" />
+    </div>
+
+    <div class="image-container">
+      <img alt="Waveform of sine wave from 177 to 343 Hz at 0–100% amplitude" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/6bcf2f148fe5513143876db65f8104b00ca41b77/Reflections_of_a_Curious_Mind/graph/audioplot_Sine_177-343Hz_0-100Loud.svg" />
+    </div>
+  </div>
+
+  
+  <h3 style="color: #9fc5d8; margin-top: 32px;">
+    <span style="font-family: verdana;">Line 2: Fading Out (100% → 0%)</span>
+  </h3>
+
+  <p><span style="font-family: verdana;">
+    This version of Line 2 (343-687 Hz) starts at full volume and gradually fades into silence.
+    This is the opposite envelope of Line 1.
+  </span></p>
+
+  <!-- ========================================
+       AUDIO PLAYER 10: LINE 2 WITH FADING (343-687 Hz, 100-0%)
+       ======================================== -->
+
+  <div class="audio-card">
+    <div class="audio-title">Line 2: 343 Hz → 687 Hz (Fading Out)</div>
+    <div class="audio-subtitle">Amplitude: 100% → 0%</div>
+    <div class="timer" id="timer10">00:00</div>
+    <button class="play-btn" id="playBtn10">▶ Play</button>
+    <div class="status-text" id="status10">Ready</div>
+  </div>
+
+  <script>
+  //<![CDATA[
+  (function() {
+    var audioCtx = null, buffer = null, source = null, playing = false;
+    var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/607f815e07ff73a7f4f0dd28cc4a00bd36c00e4a/Reflections_of_a_Curious_Mind/Shepherd_tone/sound/Sine_343-687Hz_100-0Loud.wav";
+    var startTime = 0, timerInterval = null;
+    var timerEl = document.getElementById("timer10");
+    var playBtn = document.getElementById("playBtn10");
+    var statusEl = document.getElementById("status10");
+    
+    function formatTime(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    
+    function loadAudio() {
+      return new Promise(function(resolve, reject) {
+        statusEl.textContent = "Loading...";
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        fetch(url)
+          .then(function(r) { if (!r.ok) throw new Error("Failed"); return r.arrayBuffer(); })
+          .then(function(b) { return audioCtx.decodeAudioData(b); })
+          .then(function(d) { buffer = d; statusEl.textContent = "Ready"; resolve(); })
+          .catch(function(e) { statusEl.textContent = "Error"; reject(e); });
+      });
+    }
+    
+    playBtn.addEventListener("click", function() {
+      if (!audioCtx) { loadAudio().then(togglePlayback); } else { togglePlayback(); }
+    });
+    
+    function togglePlayback() {
+      if (!playing) {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        var gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+        source.connect(gain);
+        gain.connect(audioCtx.destination);
+        source.start(0);
+        startTime = performance.now();
+        timerInterval = setInterval(function() { timerEl.textContent = formatTime(performance.now() - startTime); }, 250);
+        source.onended = function() {
+          clearInterval(timerInterval);
+          timerEl.textContent = "00:00";
+          playing = false;
+          playBtn.innerHTML = "▶ Play";
+          statusEl.textContent = "Finished";
+        };
+        playing = true;
+        playBtn.innerHTML = "⏸ Stop";
+        statusEl.textContent = "Playing...";
+      } else {
+        if (source) source.stop();
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        playing = false;
+        playBtn.innerHTML = "▶ Play";
+        statusEl.textContent = "Stopped";
+      }
+    }
+  })();
+  //]]>
+  </script>
+
+  
+  <!-- Graphs for Sine 343–687 Hz at 100–0% Loudness -->
+  <div class="image-container-row">
+    <div class="image-container">
+      <img alt="Frequency spectrum of sine wave from 343 to 687 Hz with loudness descending from 100% to 0%" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/6bcf2f148fe5513143876db65f8104b00ca41b77/Reflections_of_a_Curious_Mind/graph/freq_plot_Sine_343-687Hz_100-0Loud.svg" />
+    </div>
+
+    <div class="image-container">
+      <img alt="Waveform of sine wave from 343 to 687 Hz with loudness descending from 100% to 0%" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/6bcf2f148fe5513143876db65f8104b00ca41b77/Reflections_of_a_Curious_Mind/graph/audioplot_Sine_343-687Hz_100-0Loud.svg" />
+    </div>
+  </div>
+
+  <p><span style="font-family: verdana;">
+    Individually, these sound unremarkable.
+    But when combined, something extraordinary happens.
+    The fading creates seamless continuity: as the higher tone disappears, the lower tone takes its place, yet because they are an octave apart,
+    the brain interprets them as a single entity that has somehow "looped" back without descending.
+  </span></p>
+
+</section>
+
+<!-- ============================================================
+     SECTION 7: THE COMPLETE SHEPARD TONE
+     ============================================================ -->
+
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 48px;">
+    <span style="font-family: verdana;">Shepard Tone</span>
+  </h2>
+
+  <p><span style="font-family: verdana;">
+    We have arrived.
+    Below is the completed Shepard tone, both lines playing simultaneously,
+    with Line 1 fading in as Line 2 fades out.
+    The sound loops continuously, creating the sensation of endless ascent.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    Listen carefully.
+    At first, you may hear the pitch rising.
+    But as the loop repeats, you will realize something:
+    the sound never arrives anywhere.
+    It climbs forever, yet it never gets higher.
+  </span></p>
+
+  <!-- ========================================
+       AUDIO PLAYER 11: COMPLETE SHEPARD TONE
+       ======================================== -->
+
+  <div class="audio-card">
+    <div class="audio-title">Complete Shepard Tone</div>
+    <div class="audio-subtitle">Line 1 (fading in) + Line 2 (fading out)</div>
+    <div class="timer" id="timer11">00:00</div>
+    <button class="play-btn" id="playBtn11">▶ Play</button>
+    <div class="status-text" id="status11">Ready</div>
+  </div>
+
+  <script>
+  //<![CDATA[
+  (function() {
+    var audioCtx = null, buffer = null, source = null, playing = false;
+    var url = "https://raw.githubusercontent.com/BrokenFate007/self-blog/607f815e07ff73a7f4f0dd28cc4a00bd36c00e4a/Reflections_of_a_Curious_Mind/Shepherd_tone/sound/Shepherd_sine_177-343Hz_0-100Loud_sine_343-687Hz_100-0Loud.wav";
+    var startTime = 0, timerInterval = null;
+    var timerEl = document.getElementById("timer11");
+    var playBtn = document.getElementById("playBtn11");
+    var statusEl = document.getElementById("status11");
+    
+    function formatTime(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+    }
+    
+    function loadAudio() {
+      return new Promise(function(resolve, reject) {
+        statusEl.textContent = "Loading...";
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        fetch(url)
+          .then(function(r) { if (!r.ok) throw new Error("Failed"); return r.arrayBuffer(); })
+          .then(function(b) { return audioCtx.decodeAudioData(b); })
+          .then(function(d) { buffer = d; statusEl.textContent = "Ready"; resolve(); })
+          .catch(function(e) { statusEl.textContent = "Error"; reject(e); });
+      });
+    }
+    
+    playBtn.addEventListener("click", function() {
+      if (!audioCtx) { loadAudio().then(togglePlayback); } else { togglePlayback(); }
+    });
+    
+    function togglePlayback() {
+      if (!playing) {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true; // THIS IS THE INFINITE LOOP
+        var gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+        source.connect(gain);
+        gain.connect(audioCtx.destination);
+        source.start(0);
+        startTime = performance.now();
+        timerInterval = setInterval(function() { timerEl.textContent = formatTime(performance.now() - startTime); }, 250);
+        playing = true;
+        playBtn.innerHTML = "⏸ Stop";
+        statusEl.textContent = "Playing...";
+      } else {
+        if (source) source.stop();
+        clearInterval(timerInterval);
+        timerEl.textContent = "00:00";
+        playing = false;
+        playBtn.innerHTML = "▶ Play";
+        statusEl.textContent = "Stopped";
+      }
+    }
+  })();
+  //]]>
+  </script>
+
+  <!-- Graphs for Shepard sine 177–343 Hz and 343–687 Hz -->
+  <div class="image-container-row">
+    <div class="image-container">
+      <img alt="Frequency vs Time plot for Shepard sine 177–343 Hz and 343–687 Hz" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/6bcf2f148fe5513143876db65f8104b00ca41b77/Reflections_of_a_Curious_Mind/graph/freq_vs_time_Shepard_sine_177-343Hz_343-687Hz.svg" />
+    </div>
+
+    <div class="image-container">
+      <img alt="Audio waveform plot for Shepard sine 177–343 Hz and 343–687 Hz" src="https://raw.githubusercontent.com/BrokenFate007/self-blog/6bcf2f148fe5513143876db65f8104b00ca41b77/Reflections_of_a_Curious_Mind/graph/audio_plot_Shepard_sine_177-343Hz_343-687Hz.svg" />
+    </div>
+  </div>
+
+  <p><span style="font-family: verdana;">
+    This is the Shepard tone.
+    Not a trick of editing, not a manipulation of playback, simply two carefully crafted sine waves,
+    phased and enveloped to exploit a quirk of human perception.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    The illusion works because our auditory system groups octave-related tones together.
+    When the higher tone fades out and is replaced by the lower tone an octave below,
+    the brain does not perceive a descent, it perceives a continuation.
+    The loop is seamless, and the ascent appears infinite.
+  </span></p>
+
+</section>
+
+
+<!-- ============================================================
+     SECTION 9: CONCLUSION
+     ============================================================ -->
+
+<section style="line-height: 1.8; margin: 48px auto; max-width: 720px; padding: 0px 16px;">
+
+  <h2 style="color: #9fc5d8; margin-bottom: 16px; margin-top: 48px;">
+    <span style="font-family: verdana;">Afterwards</span>
+  </h2>
+
+  <p><span style="font-family: verdana;">
+    The Shepard tone is more than an auditory curiosity. It is a window into how perception shapes reality.
+    Throughout this exploration, we have deconstructed the illusion piece by piece.
+    We isolated frequencies, mapped amplitude envelopes, visualized waveforms, and traced the mathematical architecture that makes the impossible ascent possible.
+    We have, in essence, peaked behind the curtain.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    And yet, knowing how it works does not make it stop working.
+    Even now, after understanding the mechanics (the octave relationships, the crossfading, the perceptual handoff), when you press play on the complete Shepard tone or the piece by Hans Zimmer, or any other such piece, you still hear it rising.
+    The illusion persists, but it transforms.
+    What once felt mysterious now feels ingenious. What seemed magical now appears elegant.
+    The illusion has not become mundane. It has become <em>real</em> in a different way: real as a testament to the brain's pattern-seeking nature, real as a clever exploitation of how we organize sound.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    This journey began with an interesting sequence of events. I had heard of the Shepard tone before. The name was familiar, the effect was known to me: that endless rising pitch, the auditory illusion of perpetual ascent. But I had never looked under the hood. I did not know how it was made, what frequencies were involved, or why the brain falls for it so completely.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    One day, while working with a senior, we stumbled upon something interesting in Wolfram Mathematica. Within it was a module that could generate sound directly from mathematical functions. No external speakers, no audio interfaces, no separate software. Just code and equations that produced waveforms. We played with it for a while, generating simple tones, experimenting with frequencies.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    I showed it to my professor. He looked at it, thought for a moment, and then said, "Let's do something with this. Let's make our own Shepard tone."
+    At the time, neither of us fully understood how to construct one. We knew the effect, but not the mechanics. So we started researching. We dug deep, experimented with frequencies, mapped out octave relationships. Slowly, the structure emerged: two frequency lines, separated by an octave, one fading in as the other fades out. Simple in concept, precise in execution.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    We built it piece by piece. First, isolated sine waves at fixed frequencies. Then sweeps, watching the pitch climb smoothly over time. Then amplitude envelopes, controlling how sounds fade in and out. Finally, we layered the two octave-separated lines together, timed their crossfades, and looped the result. The illusion worked. What you hear in this post is the result of that process: each sound file synthesized within Mathematica, each graph plotted from raw waveform data.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    What struck me most was not the complexity of the illusion, but its simplicity.
+    The Shepard tone requires no exotic sounds, no digital trickery. It needs just sine waves, careful timing, and an understanding of how octaves relate.
+    It is built from the most fundamental elements of sound, yet it creates an experience that feels impossible.
+    This is the beauty of illusions: they remind us that reality is not just what exists, but how we interpret what exists.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    In <em>Dunkirk</em>, Zimmer used the Shepard–Risset Glissando to mirror the psychological tension of soldiers trapped with no escape. It creates urgency without resolution, movement without progress.
+    But the illusion speaks to something broader:
+    our minds constantly construct coherent narratives from incomplete information.
+    We seek continuity, we expect patterns, and sometimes those expectations can be shaped, redirected, even fooled.
+  </span></p>
+
+  <p><span style="font-family: verdana;">
+    Now that we understand the mechanism, the Shepard tone remains as compelling as ever. It captivates us not despite our knowledge, but because of it.
+    We hear both the illusion <em>and</em> the architecture beneath it.
+    We climb the infinite staircase, aware that it loops, yet unable to stop perceiving the ascent.
+    This is the paradox of understanding: knowledge reveals the trick, but the magic lingers.
+    And here it is, presented to you as it was first presented in my professor's acoustics lecture: a journey to Shepard tone.
+  </span></p>
+
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+
+<section style="line-height: 1.8; margin: 48px auto 80px auto; max-width: 720px; padding: 0px 16px;">
+  
+  <p style="border-top: 1px solid #ddd; margin-top: 48px; padding-top: 24px;">
+    <span style="color: #666666; font-family: verdana; font-size: 0.9rem;">
+      <em>This blog post documents the Shepard tone demonstration created for an introductory acoustics lecture.
+      All sound files and waveform graphs were generated from scratch using 
+      Wolfram Mathematica, synthesizing pure sine waves with precisely calculated frequency sweeps and amplitude envelopes.
+      </em>
+    </span>
+  </p>
+
+  <p style="margin-top: 16px; text-align: center;">
+    <span style="font-family: verdana; font-size: 0.95rem;">
+      <a href="https://docs.google.com/viewer?url=https://github.com/BrokenFate007/self-blog/raw/20a4275f69477c15e69d1ff4639c463e21d9e4c7/Reflections_of_a_Curious_Mind/Shepherd_tone/A_journey_to_shepherd_tone.pdf&amp;embedded=true" rel="noopener noreferrer" style="color: #2c5364; font-weight: 600; text-decoration: none; transition: all 0.2s;" target="_blank">
+        📄 View Complete Mathematica Notebook (PDF)
+      </a>
+    </span>
+  </p>
+
+  <p style="margin-top: 16px;">
+    <span style="color: #666666; font-family: verdana; font-size: 0.9rem;">
+      <em>Special thanks to my professor for the collaboration and to Roger Shepard and Jean-Claude Risset for their pioneering work in psychoacoustics that made this illusion possible.</em>
+    </span>
+  </p>
+
+</section>
+
+  
+  
+  
+  <!-- ========================================
+     ADD THIS JAVASCRIPT BEFORE </body>
+     For mobile click functionality
+     ======================================== -->
+
+<script>
+//<![CDATA[
+// Handle citation clicks for mobile devices
+document.addEventListener('DOMContentLoaded', function() {
+  var citations = document.querySelectorAll('.citation');
+  
+  citations.forEach(function(citation) {
+    citation.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Close all other active citations
+      citations.forEach(function(c) {
+        if (c !== citation) {
+          c.classList.remove('active');
+        }
+      });
+      
+      // Toggle this citation
+      this.classList.toggle('active');
+    });
+  });
+  
+  // Close citation when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.citation')) {
+      citations.forEach(function(c) {
+        c.classList.remove('active');
+      });
+    }
+  });
+});
+//]]>
+</script>
+</body>
+</html>
