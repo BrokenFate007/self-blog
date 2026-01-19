@@ -31,18 +31,57 @@
       margin: 24px 0;
     }
     
+    /* ===== CONTENT FLEX CONTAINER ===== */
+    .content-flex {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 40px;
+      margin: 40px 0;
+    }
+    
+    /* ===== IMAGE CONTAINER STYLING ===== */
+    .image-container {
+      background: #2e2e2e;
+      border-radius: 1px;
+      flex: 0 0 280px;
+      padding: 1px;
+    }
+    
+    .image-container img {
+      display: block;
+      width: 100%;
+      border-radius: 8px;
+    }
+    
     /* ===== POEM STYLING ===== */
     /* ===== POEM STYLING (VERDANA VERSION) ===== */
     .poem {
       font-family: verdana, sans-serif;
       color: #e8f1f2;
       line-height: 1.8;
-      margin: 32px 0;
+      margin: 0;
+      flex: 1;
     }
 
 
     .poem p {
       margin: 24px 0;
+    }
+
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .content-flex {
+        flex-direction: column-reverse;
+        gap: 30px;
+      }
+      
+      .image-container {
+        flex: 0 0 auto;
+        max-width: 200px;
+        margin: 0 auto;
+      }
     }
 
 
@@ -66,7 +105,7 @@
 
   <!-- Introduction -->
   <p><span style="font-family: verdana; color: #e8f1f2;">
-    A moment suspended between presence and absence. Here it is.
+    My first evening at the beach... Wrote a small piece about what I felt at the last sunlight. Here it is...
   </span></p>
 
 
@@ -76,18 +115,27 @@
   <hr class="divider">
 
 
-  <!-- Poem Content -->
-  <div class="poem">
-    <p>
-      Close your eyes and feel…<br>
-      The last sunlight on the closed eye…<br>
-      and the sound of the wave…<br>
-      and the prickling of the sand…<br>
-      and the taste of the salt…<br>
-      and the feel…<br>
-      and vast horizon…<br>
-      and… and… and…
-    </p>
+  <!-- Flex Container for Image and Poem -->
+  <div class="content-flex">
+    <!-- Beach Image -->
+    <div class="image-container">
+      <img src="https://raw.githubusercontent.com/BrokenFate007/self-blog/7652e81880c721c4b7a527e1dbae676f122bb83e/poem_and_story/the_last_sunlight/image_me_standing_on_beach.jpg" alt="Standing at the beach during evening">
+    </div>
+
+    <!-- Poem Content -->
+    <div class="poem">
+      <p>
+        Felt...<br>
+        the last sunlight on the closed eye…<br>
+        and the prickling of the sand…<br>
+        and the sound of the wave…<br>
+        and the taste of the salt…<br>
+        and the vast horizon…<br>
+        and the smell of…<br>
+        and… and…<br>
+        and…
+      </p>
+    </div>
   </div>
 
 
